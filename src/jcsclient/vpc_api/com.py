@@ -53,6 +53,7 @@ def create_vpc(url, verb, headers, version, args):
     args = args[1:]
     parser = utils.get_argument_parser()
     parser.add_argument('--cidr-block',required=True)
+    parser.add_argument('--jcs-provided-ipv6-cidr-block',required=False)
     args = parser.parse_args(args)
     vpcutils.populate_params_from_cli_args(params, args)
     return requestify.make_request(url, verb, headers, params)
@@ -96,6 +97,7 @@ def create_subnet(url, verb, headers, version, args):
     parser = utils.get_argument_parser()
     parser.add_argument('--vpc-id',required=True)
     parser.add_argument('--cidr-block',required=True) 
+    parser.add_argument('--ipv6-cidr-block',required=False) 
     args = parser.parse_args(args)
     utils.populate_params_from_cli_args(params, args)
     return requestify.make_request(url, verb, headers, params)
